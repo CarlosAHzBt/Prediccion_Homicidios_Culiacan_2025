@@ -1,0 +1,84 @@
+# utils/merge_data.py
+import pandas as pd
+from pathlib import Path
+import datetime as dt
+import numpy as np
+
+def merge_data():
+    """
+    Fusiona los datasets de homicidios, clima y dólar en un único archivo.
+    """
+    print("Iniciando la fusión de datos...")
+    
+    # --- Cargar Datasets ---
+    data_dir = Path(__file__).parent.parent / 'datos'
+    
+    try:
+        homicidios_df = pd.read_csv(data_dir / 'homicidios.csv', parse_dates=['date'])
+        robos_df = pd.read_csv(data_dir / 'robos.csv', parse_dates=['date'])
+        clima_df = pd.read_csv(data_dir / 'clima.csv', parse_dates=['date'])
+        dolar_df = pd.read_csv(data_dir / 'dolar.csv', parse_dates=['date'])
+        calendario_df = pd.read_csv(data_dir / 'calendario.csv', parse_dates=['date'])
+    except FileNotFoundError as e:
+        print(f"Error: No se encontró el archivo {e.filename}. Ejecuta los scripts de obtención de datos primero.")
+        return
+
+    # --- Fusionar Datos ---
+    print("Fusionando datasets...")
+    
+    # Crear un DataFrame base con todas las fechas
+    start_date = homicidios_df['date'].min()
+    end_date = dt.datetime.now().date()
+    
+    # Asegurarse de que end_date no sea NaT
+    if pd.isna(start_date):
+        print("Error: La fecha de inicio en homicidios.csv es inválida.")
+        return
+        
+    date_range = pd.date_range(start=start_date, end=end_date, freq='D')
+    final_df = pd.DataFrame(date_range, columns=['date'])
+
+    # Fusionar homicidios
+    final_df = pd.merge(final_df, homicidios_df, on='date', how='left')
+    final_df['homicidios'].fillna(0, inplace=True) # Asumir 0 homicidios en días sin datos
+
+    # Fusionar robos
+    final_df = pd.merge(final_df, robos_df, on='date', how='left')
+    final_df['robos'].fillna(0, inplace=True) # Asumir 0 robos en días sin datos
+
+    # Fusionar clima
+    final_df = pd.merge(final_df, clima_df, on='date', how='left')
+
+    # Fusionar dólar
+    final_df = pd.merge(final_df, dolar_df, on='date', how='left')
+    
+    # Fusionar datos de calendario
+    final_df = pd.merge(final_df, calendario_df, on='date', how='left')
+    
+    # Interpolar valores faltantes para clima y dólar
+    final_df[['tavg', 'tmin', 'tmax', 'prcp', 'wspd', 'pres', 'precio_dolar']] = \
+        final_df[['tavg', 'tmin', 'tmax', 'prcp', 'wspd', 'pres', 'precio_dolar']].interpolate(method='linear')
+    
+    # Rellenar hacia adelante y hacia atrás por si quedan nulos en los extremos
+    final_df.fillna(method='ffill', inplace=True)
+    final_df.fillna(method='bfill', inplace=True)
+
+    # --- Feature Engineering (Opcional, pero recomendado) ---
+    print("Creando características adicionales...")
+    final_df['dia_semana'] = final_df['date'].dt.day_name()
+    final_df['mes'] = final_df['date'].dt.month
+    final_df['año'] = final_df['date'].dt.year
+    final_df['dia_del_año'] = final_df['date'].dt.dayofyear
+    final_df['quincena'] = np.where(final_df['date'].dt.day <= 15, 1, 2)
+
+    # --- Guardar Dataset Final ---
+    output_path = data_dir.parent / 'Dataset_homicidios_Actualizado.csv'
+    final_df.to_csv(output_path, index=False)
+    
+    print("Fusión completada.")
+    print(f"Dataset final guardado en: {output_path}")
+    print(f"Total de registros: {len(final_df)}")
+    print(f"Rango de fechas: {final_df['date'].min().strftime('%Y-%m-%d')} a {final_df['date'].max().strftime('%Y-%m-%d')}")
+
+if __name__ == "__main__":
+    merge_data()
