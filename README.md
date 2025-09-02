@@ -1,85 +1,102 @@
-# ENTREGABLES FINALES - ANÁLISIS DE HOMICIDIOS EN CULIACÁN
+# Predicción de Homicidios Diarios en Culiacán
 
-## 📋 DESCRIPCIÓN DEL PROYECTO
-Análisis completo de homicidios en Culiacán con datos corregidos (sin fechas futuras).
-Proyecto de ciencia de datos que incluye limpieza, análisis estadístico, modelado y visualizaciones.
+## 📋 Descripción del Proyecto
 
-## 📅 INFORMACIÓN DEL ANÁLISIS
-- **Fecha de análisis**: 09/07/2025
-- **Período de datos**: 01/01/2025 - 08/07/2025 (solo datos históricos)
-- **Total de registros**: 303 días
-- **Total de homicidios**: 1,685 casos
+Proyecto de ciencia de datos para analizar y predecir homicidios diarios en Culiacán, Sinaloa. Incluye recopilación de datos, ingeniería de características, experimentación con modelos de machine learning y visualizaciones.
 
-## 📁 ESTRUCTURA DE ARCHIVOS
+**Estado del proyecto**: En desarrollo activo. Es un proyecto secundario personal que se avanza lentamente, por lo que puede tener algunos bugs y áreas por mejorar.
 
-### 📊 `/datos`
-- **culiacan_calendar_cleaned.csv**: Dataset principal limpio sin fechas futuras
-- **feature_importance_corrected.csv**: Importancia de variables del modelo
-- **homicidios.csv**: Datos originales de homicidios extraídos
-- **robos.csv**: Datos originales de robos de vehículos
+## ⚠️ Notas Importantes sobre el Desarrollo
 
-### 📋 `/reportes`
-- **resumen_ejecutivo.txt**: Resumen ejecutivo para tomadores de decisiones
-- **reporte_final_consolidado.txt**: Reporte técnico completo del proyecto
-- **analisis_corregido_final.txt**: Análisis estadístico detallado
+- **Fuente de datos de homicidios**: Los datos de homicidios se obtienen a partir de los reportes publicados por "El Noroeste", un portal de noticias de Culiacán que publica diariamente el número de homicidios.
+- **Proyecto en desarrollo**: No es una solución final o producción-ready. Se trata de un análisis exploratorio que evoluciona con el tiempo.
+- **Variables utilizadas**: Las características incluidas no son necesariamente las óptimas. Gran parte del código fue "vibe-coded" (desarrollado con intuición y experimentación rápida), lo que significa que algunas decisiones técnicas podrían no seguir las mejores prácticas.
+- **Fortalezas**: La selección de características, las visualizaciones y las predicciones son aspectos sólidos y útiles del proyecto.
+- **Limitaciones**: Puede contener bugs menores, especialmente en la automatización y manejo de errores. Se recomienda revisar los resultados y validar antes de usar en contextos críticos.
 
-### 📊 `/visualizaciones`
-- **analisis_corregido_final.png**: Gráficos principales del análisis
-- **estadisticas_finales_corregidas.png**: Estadísticas visuales y tendencias
+## 📁 Estructura del Proyecto
 
-### 🔧 `/scripts`
-- **get_homicides.py**: Script de web scraping para obtener datos de Flourish
-- **precio_dolar.py**: Script para obtener precios del dólar desde Yahoo Finance
-- **corrected_analysis.py**: Script principal de análisis sin fechas futuras
-- **update_all_data.py**: Script para actualizar variables del dataset
-- **create_final_summary.py**: Script para generar resúmenes ejecutivos
-- **final_corrected_viz.py**: Script para crear visualizaciones corregidas
+### 🔧 Archivos Principales
 
-### 📓 **NOTEBOOK DE AUTOMATIZACIÓN**
-- **automatizacion_datos_completa.ipynb**: Notebook completo que agrupa todos los scripts de obtención y actualización de datos
+- **`main.py`**: Script principal que ejecuta el pipeline completo para actualizar los datos. Recopila y procesa información de homicidios, robos, clima, dólar y calendario.
+- **`tests/experimentacion_modelos.ipynb`**: Notebook principal para análisis exploratorio, ingeniería de características, experimentación con modelos de ML y visualizaciones.
 
-## 🎯 CARACTERÍSTICAS TÉCNICAS
-- ✅ **Datos validados**: Sin fechas futuras, solo información histórica
-- ✅ **Variables incluidas**: Climáticas, económicas, temporales y booleanas
-- ✅ **Modelado**: Regresión lineal con análisis de importancia de features
-- ✅ **Calidad**: Datos limpios, consistentes y documentados
+### 📊 Datos
 
-## 🚀 CÓMO USAR ESTOS ARCHIVOS
+- **`Dataset_homicidios_Actualizado.csv`**: Dataset principal con todas las variables fusionadas (homicidios, clima, dólar, fechas, etc.).
+- **`datos/`**: Carpeta con datasets intermedios procesados:
+  - `homicidios.csv`: Datos de homicidios.
+  - `robos.csv`: Datos de robos de vehículos.
+  - `clima.csv`: Datos climáticos.
+  - `dolar.csv`: Precios del dólar.
+  - `calendario.csv`: Información de calendario y días especiales.
+  - `culiacan_calendar_cleaned.csv`: Calendario limpio.
+  - `feature_importance_corrected.csv`: Importancia de características del modelo.
 
-### Para Obtener Datos Actualizados:
-1. **Usar el Notebook**: Abrir `automatizacion_datos_completa.ipynb` y ejecutar todas las celdas
-2. **Scripts individuales**: 
-   - Ejecutar `get_homicides.py` para datos de homicidios y robos
-   - Ejecutar `precio_dolar.py` para precios del dólar
-   - Ejecutar `update_all_data.py` para integrar todo
+### 🔧 Utilidades
 
-### Para Análisis:
-1. Cargar `culiacan_calendar_cleaned.csv` como dataset principal
-2. Revisar `feature_importance_corrected.csv` para variables importantes
-3. Ejecutar `corrected_analysis.py` para reproducir el análisis
+- **`utils/`**: Scripts modulares para recopilar datos:
+  - `get_homicidios.py`: Obtiene datos de homicidios.
+  - `get_robos.py`: Obtiene datos de robos.
+  - `get_clima.py`: Obtiene datos climáticos.
+  - `get_dolar.py`: Obtiene precios del dólar.
+  - `get_dias_pago.py`: Genera calendario con días de pago y festivos.
+  - `merge_data.py`: Fusiona todos los datasets en el principal.
 
-### Para Reportes:
-1. Consultar `resumen_ejecutivo.txt` para insights principales
-2. Revisar `reporte_final_consolidado.txt` para detalles técnicos
-3. Ver visualizaciones en la carpeta correspondiente
+### 🤖 Modelos
 
-### Para Actualización de Datos:
-1. **RECOMENDADO**: Usar `automatizacion_datos_completa.ipynb` (contiene todo el proceso)
-2. **Alternativo**: Usar scripts individuales en este orden:
-   - `get_homicides.py` → `precio_dolar.py` → `update_all_data.py`
-3. Ejecutar `corrected_analysis.py` para re-analizar
-4. Generar nuevos reportes con `create_final_summary.py`
+- **`modelos/`**: Modelos entrenados y guardados:
+  - `homicidios_predictor_*.joblib`: Modelos de predicción.
+  - `scaler_*.joblib`: Escaladores para normalización.
+  - `model_info_*.json`: Metadatos de los modelos.
 
-## ⚠️ NOTAS IMPORTANTES
-- Los datos están filtrados hasta el 08/07/2025 para evitar fechas futuras
-- El modelo actual tiene limitaciones (R² negativo) y requiere mejoras
-- Se recomienda actualizar datos semanalmente
-- Validar nuevos datos antes de incorporar al análisis
+### 📦 Otros
 
-## 📧 CONTACTO
-Sistema de Análisis de Homicidios v1.0
-Desarrollado para: Análisis de Seguridad Pública - Culiacán
+- **`requirements.txt`**: Dependencias de Python necesarias.
+- **`.venv/`**: Entorno virtual (no incluir en control de versiones).
+
+## 🚀 Cómo Usar el Proyecto
+
+### Flujo de Trabajo Típico
+
+Cada vez que quieres ejecutar el código:
+
+1. **Actualizar datos**: Ejecuta `main.py` para recopilar y procesar los datos más recientes. Esto actualiza los CSVs en `datos/` y genera `Dataset_homicidios_Actualizado.csv`.
+
+   ```bash
+   python main.py
+   ```
+2. **Análisis y modelado**: Abre `tests/experimentacion_modelos.ipynb` y ejecuta todas las celdas. Esto incluye:
+
+   - Carga de datos.
+   - Exploración y visualizaciones.
+   - Ingeniería de características.
+   - Entrenamiento y evaluación de modelos.
+   - Predicciones.
+
+### Requisitos Previos
+
+- Python 3.8+
+- Instalar dependencias: `pip install -r requirements.txt`
+- Navegador Chrome (para scraping con Selenium en algunos scripts).
+
+### Actualización de Datos
+
+- Ejecuta `main.py` regularmente para mantener los datos al día.
+- Los scripts en `utils/` pueden ejecutarse individualmente si necesitas actualizar solo una fuente de datos.
+
+## 🎯 Características Técnicas
+
+- **Fuentes de datos**: Homicidios, robos, clima, precios del dólar, calendario.
+- **Modelos probados**: Regresión lineal, Random Forest, XGBoost, LightGBM, etc.
+- **Métricas**: MAE, RMSE, R², MAPE.
+- **Visualizaciones**: Gráficos de tendencias, importancia de features, predicciones.
+
+## 📧 Contacto y Contribuciones
+
+Proyecto personal para análisis de datos. Si encuentras bugs o tienes sugerencias, siéntete libre de contribuir o reportar issues.
 
 ---
-**Generado automáticamente el**: 13 archivos organizados
-**Fecha**: 09/07/2025
+
+**Última actualización**: Septiembre 2025
+**Versión**: En desarrollo
