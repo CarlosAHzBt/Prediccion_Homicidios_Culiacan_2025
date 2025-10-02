@@ -1,7 +1,7 @@
 {
-  "best_model": "RF",
+  "best_model": "MA7",
   "n_rows": 349,
-  "n_features": 43,
+  "n_features": 42,
   "train_window": 90,
   "test_window": 7,
   "gap": 3,
@@ -26,7 +26,6 @@
     "es_festivo",
     "despues_festivo",
     "antes_festivo",
-    "is_outlier",
     "h_lag_1",
     "h_lag_2",
     "h_lag_3",

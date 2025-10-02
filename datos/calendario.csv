@@ -443,3 +443,17 @@ date,año,mes,dia,dia_semana,dia_semana_num,es_fin_semana,es_dia_pago,es_festivo
 2025-09-15,2025,9,15,Monday,0,False,True,False,True,False,True,1,0
 2025-09-16,2025,9,16,Tuesday,1,False,False,True,False,False,False,2,1
 2025-09-17,2025,9,17,Wednesday,2,False,False,False,True,True,False,2,2
+2025-09-18,2025,9,18,Thursday,3,False,False,False,True,False,False,2,3
+2025-09-19,2025,9,19,Friday,4,False,True,False,True,False,False,2,0
+2025-09-20,2025,9,20,Saturday,5,True,False,False,False,False,False,2,1
+2025-09-21,2025,9,21,Sunday,6,True,False,False,False,False,False,2,2
+2025-09-22,2025,9,22,Monday,0,False,False,False,True,False,False,2,3
+2025-09-23,2025,9,23,Tuesday,1,False,False,False,True,False,False,2,4
+2025-09-24,2025,9,24,Wednesday,2,False,False,False,True,False,False,2,5
+2025-09-25,2025,9,25,Thursday,3,False,False,False,True,False,False,2,6
+2025-09-26,2025,9,26,Friday,4,False,True,False,True,False,False,2,0
+2025-09-27,2025,9,27,Saturday,5,True,False,False,False,False,False,2,1
+2025-09-28,2025,9,28,Sunday,6,True,False,False,False,False,False,2,2
+2025-09-29,2025,9,29,Monday,0,False,False,False,True,False,False,2,3
+2025-09-30,2025,9,30,Tuesday,1,False,True,False,True,False,False,2,0
+2025-10-01,2025,10,1,Wednesday,2,False,True,False,True,False,False,1,0
