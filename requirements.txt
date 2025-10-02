@@ -7,3 +7,9 @@ scikit-learn>=1.1.0
 requests>=2.28.0
 yfinance>=0.1.70
 selenium>=4.0.0
+statsmodels>=0.13.0
+scipy>=1.8.0
+joblib>=1.2.0
+# opcional, validación de esquemas
+pandera>=0.16.0
+tensorflow>=2.12.0
