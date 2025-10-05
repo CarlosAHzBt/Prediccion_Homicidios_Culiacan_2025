@@ -42,6 +42,13 @@ Proyecto de ciencia de datos para analizar y predecir homicidios diarios en Culi
   - `get_dolar.py`: Obtiene precios del dólar.
   - `get_dias_pago.py`: Genera calendario con días de pago y festivos.
   - `merge_data.py`: Fusiona todos los datasets en el principal.
+  - **`scrapping/`**: 🆕 **Sistema de Análisis de Emociones en Tweets**
+    - `tweets_sentiments_test.py`: Analizador principal de emociones
+    - `visualizador_emociones.py`: Generador de visualizaciones
+    - `config_tweets.py`: Configuración del sistema
+    - `ejemplo_uso_completo.py`: Ejemplos y menú interactivo
+    - `test_sistema.py`: Tests y validación
+    - `README_TWEETS.md`: Documentación completa del módulo
 
 ### 🤖 Modelos
 
@@ -74,10 +81,23 @@ Cada vez que quieres ejecutar el código:
    - Entrenamiento y evaluación de modelos.
    - Predicciones.
 
+3. **🆕 Análisis de Emociones en Tweets** (Nuevo módulo):
+
+   ```bash
+   # Instalación rápida
+   .\utils\scrapping\setup_sistema_tweets.ps1
+   
+   # Uso interactivo (recomendado)
+   python utils\scrapping\ejemplo_uso_completo.py
+   ```
+   
+   Ver documentación completa en: `utils/scrapping/README_TWEETS.md`
+
 ### Requisitos Previos
 
 - Python 3.8+
 - Instalar dependencias: `pip install -r requirements.txt`
+- Para análisis de tweets: `pip install -r utils/scrapping/requirements_tweets.txt`
 - Navegador Chrome (para scraping con Selenium en algunos scripts).
 
 ### Actualización de Datos
@@ -88,9 +108,52 @@ Cada vez que quieres ejecutar el código:
 ## 🎯 Características Técnicas
 
 - **Fuentes de datos**: Homicidios, robos, clima, precios del dólar, calendario.
+- **🆕 Análisis de Sentimientos**: Clasificación de emociones en tweets sobre Culiacán (alegría, tristeza, ira, miedo, sorpresa).
 - **Modelos probados**: Regresión lineal, Random Forest, XGBoost, LightGBM, etc.
 - **Métricas**: MAE, RMSE, R², MAPE.
-- **Visualizaciones**: Gráficos de tendencias, importancia de features, predicciones.
+- **Visualizaciones**: Gráficos de tendencias, importancia de features, predicciones, series temporales de emociones.
+
+## 🆕 Sistema de Análisis de Emociones en Tweets
+
+### ¿Qué hace?
+
+Analiza tweets históricos sobre Culiacán para determinar el "sentimiento del día" basado en 5 categorías emocionales:
+
+- 😊 **Alegría** - Tweets positivos
+- 😢 **Tristeza** - Tweets negativos/tristes
+- 😡 **Ira** - Tweets de enojo/indignación
+- 😨 **Miedo** - Tweets de temor/preocupación
+- 😲 **Sorpresa** - Tweets de asombro
+
+### Inicio Rápido
+
+```powershell
+# 1. Instalar
+.\utils\scrapping\setup_sistema_tweets.ps1
+
+# 2. Ejecutar menú interactivo
+python utils\scrapping\ejemplo_uso_completo.py
+
+# 3. Generar script de recolección
+# Selecciona opción 1 en el menú
+
+# 4. Recolectar tweets
+.\recolectar_tweets_culiacan.ps1
+
+# 5. Procesar y visualizar
+# Selecciona opciones 3 y 4 en el menú
+```
+
+### Características del Sistema
+
+✅ **Recolección automatizada** de tweets históricos (snscrape)
+✅ **Clasificación con IA** usando modelos de NLP (pysentimiento)
+✅ **Análisis temporal** diario, mensual y anual
+✅ **7 tipos de visualizaciones** profesionales
+✅ **Exportación de datos** para integración con modelos predictivos
+✅ **Sistema de testing** con datos sintéticos
+
+Ver documentación completa en: [`utils/scrapping/README_TWEETS.md`](utils/scrapping/README_TWEETS.md)
 
 ## 📧 Contacto y Contribuciones
 

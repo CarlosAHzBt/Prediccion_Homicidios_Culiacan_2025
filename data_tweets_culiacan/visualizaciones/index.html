@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizaciones - Análisis de Emociones Culiacán</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .viz-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .viz-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .viz-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .viz-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .viz-header h2 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .viz-header p {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        
+        .viz-image {
+            width: 100%;
+            display: block;
+            background: #f8f9fa;
+        }
+        
+        .dashboard {
+            grid-column: 1 / -1;
+        }
+        
+        .precision-table {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 30px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .bar {
+            background: #667eea;
+            height: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .excellent { background: #10b981; }
+        .good { background: #3b82f6; }
+        .warning { background: #f59e0b; }
+        
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+        }
+        
+        @media (min-width: 768px) {
+            .viz-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎭 Análisis de Emociones en Tweets</h1>
+            <p class="subtitle">Sistema de Predicción de Sentimientos para Culiacán, Sinaloa</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>1,500</h3>
+                <p>Tweets Analizados</p>
+            </div>
+            <div class="stat-card">
+                <h3>68.7%</h3>
+                <p>Precisión Global</p>
+            </div>
+            <div class="stat-card">
+                <h3>30</h3>
+                <p>Días de Análisis</p>
+            </div>
+            <div class="stat-card">
+                <h3>52s</h3>
+                <p>Tiempo de Procesamiento</p>
+            </div>
+            <div class="stat-card">
+                <h3>5</h3>
+                <p>Emociones Detectadas</p>
+            </div>
+            <div class="stat-card">
+                <h3>435 MB</h3>
+                <p>Modelo BERT</p>
+            </div>
+        </div>
+        
+        <div class="precision-table">
+            <h2 style="color: #667eea; margin-bottom: 20px;">📊 Precisión por Emoción</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Emoción</th>
+                        <th>Correctos</th>
+                        <th>Total</th>
+                        <th>Precisión</th>
+                        <th>Visualización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>😊 Alegría</td>
+                        <td>377</td>
+                        <td>377</td>
+                        <td><strong>100.0%</strong></td>
+                        <td><span class="bar excellent" style="width: 200px;"></span></td>
+                    </tr>
+                    <tr>
+                        <td>😲 Sorpresa</td>
+                        <td>220</td>
+                        <td>220</td>
+                        <td><strong>100.0%</strong></td>
+                        <td><span class="bar excellent" style="width: 200px;"></span></td>
+                    </tr>
+                    <tr>
+                        <td>😢 Tristeza</td>
+                        <td>233</td>
+                        <td>294</td>
+                        <td><strong>79.3%</strong></td>
+                        <td><span class="bar good" style="width: 159px;"></span></td>
+                    </tr>
+                    <tr>
+                        <td>😠 Ira</td>
+                        <td>91</td>
+                        <td>206</td>
+                        <td><strong>44.2%</strong></td>
+                        <td><span class="bar warning" style="width: 88px;"></span></td>
+                    </tr>
+                    <tr>
+                        <td>😨 Miedo</td>
+                        <td>110</td>
+                        <td>403</td>
+                        <td><strong>27.3%</strong></td>
+                        <td><span class="bar warning" style="width: 55px;"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h2 style="color: white; text-align: center; margin: 40px 0 20px 0; font-size: 2em;">📈 Visualizaciones Generadas</h2>
+        
+        <div class="viz-grid">
+            <div class="viz-card dashboard">
+                <div class="viz-header">
+                    <h2>🎯 Dashboard Completo</h2>
+                    <p>Panel integrado con todas las métricas principales</p>
+                </div>
+                <img src="dashboard_completo.png" alt="Dashboard Completo" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>📉 Serie Temporal</h2>
+                    <p>Evolución de emociones día a día</p>
+                </div>
+                <img src="serie_temporal_emociones.png" alt="Serie Temporal" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>📅 Calendario de Emociones</h2>
+                    <p>Heatmap con emoción dominante por día</p>
+                </div>
+                <img src="calendario_emociones.png" alt="Calendario" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>🥧 Distribución Anual</h2>
+                    <p>Porcentaje total de cada emoción</p>
+                </div>
+                <img src="distribucion_anual.png" alt="Distribución" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>💥 Intensidad Emocional</h2>
+                    <p>Variación de la intensidad en el tiempo</p>
+                </div>
+                <img src="intensidad_emociones.png" alt="Intensidad" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>🔥 Días Más Intensos</h2>
+                    <p>Top 10 días con mayor carga emocional</p>
+                </div>
+                <img src="dias_mas_intensos.png" alt="Días Intensos" class="viz-image">
+            </div>
+            
+            <div class="viz-card">
+                <div class="viz-header">
+                    <h2>📊 Evolución Mensual</h2>
+                    <p>Tendencias agregadas por mes</p>
+                </div>
+                <img src="evolucion_mensual.png" alt="Evolución Mensual" class="viz-image">
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Modelo:</strong> finiteautomata/beto-emotion-analysis (BERT)</p>
+            <p><strong>Generado:</strong> 4 de octubre de 2025, 16:51:11</p>
+            <p><strong>Sistema:</strong> TweetsEmotionAnalyzer v1.0 + VisualizadorEmociones v1.0</p>
+            <p style="margin-top: 15px; color: #999;">
+                ⚠️ <em>Nota: Estos son datos sintéticos de demostración. Para análisis real se requiere Twitter API o scraping de noticias locales.</em>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

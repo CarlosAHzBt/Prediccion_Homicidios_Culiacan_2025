@@ -1,0 +1,229 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║           ✅ CONFIGURACIÓN PERSONALIZADA COMPLETADA                          ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📋 TU CONFIGURACIÓN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📅 Período: 2024-09-01 → 2025-09-30 (13 meses, 395 días)
+
+📝 Palabras clave:
+   • Culiacan
+   • Culiacán  
+   • Culiacan Sinaloa
+
+💬 Incluye:
+   ✓ Tweets base
+   ✓ Respuestas (replies)
+
+🚫 Excluye:
+   ✗ Retweets
+
+🌍 Idioma: Español (es)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 ESTADÍSTICAS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Total de días a recolectar: 395
+Tiempo estimado: 6-7 horas
+Archivos a generar: 395 archivos .jsonl
+
+Desglose por mes:
+  • Sep 2024: 30 días
+  • Oct 2024: 31 días
+  • Nov 2024: 30 días
+  • Dic 2024: 31 días
+  • Ene 2025: 31 días
+  • Feb 2025: 28 días
+  • Mar 2025: 31 días
+  • Abr 2025: 30 días
+  • May 2025: 31 días
+  • Jun 2025: 30 días
+  • Jul 2025: 31 días
+  • Ago 2025: 31 días
+  • Sep 2025: 30 días
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 CÓMO EJECUTAR (OPCIÓN 1 - RECOMENDADA):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: Instalar snscrape (si no lo tienes)
+
+    pip install snscrape
+
+    O si da problemas:
+
+    pip install git+https://github.com/JustAnotherArchivist/snscrape.git
+
+
+PASO 2: Ejecutar el script de recolección
+
+    cd utils\scrapping
+    .\recolectar_tweets_culiacan.ps1
+
+
+PASO 3: Esperar (6-7 horas)
+
+    El script mostrará el progreso:
+    [1/395] Recolectando 2024-09-01...
+    [2/395] Recolectando 2024-09-02...
+    ...
+
+    💡 Puedes pausar con Ctrl+C y reanudar después
+
+
+PASO 4: Una vez completada la recolección, procesar los datos
+
+    cd ..\..  # Volver a la raíz del proyecto
+    
+    # Primero instalar dependencias
+    pip install -r utils\scrapping\requirements_tweets.txt
+    
+    # Luego ejecutar el procesamiento
+    python utils\scrapping\ejemplo_uso_completo.py
+    
+    # Seleccionar:
+    # Opción 3: Procesar tweets recolectados
+    # Opción 4: Generar visualizaciones
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 OPCIÓN 2 - EJECUCIÓN MANUAL (DÍA POR DÍA):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si prefieres hacerlo manual o probar con un solo día primero:
+
+# Crear directorio (solo la primera vez)
+New-Item -ItemType Directory -Path "data_tweets_culiacan\raw" -Force
+
+# Recolectar un día específico (ejemplo: 2024-09-01)
+snscrape --jsonl twitter-search "Culiacan OR Culiacán OR `"Culiacan Sinaloa`" lang:es since:2024-09-01 until:2024-09-02 -filter:retweets" > data_tweets_culiacan\raw\tweets_2024-09-01.jsonl
+
+# Ver cuántos tweets se obtuvieron
+Get-Content data_tweets_culiacan\raw\tweets_2024-09-01.jsonl | Measure-Object -Line
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 ESTRUCTURA DE ARCHIVOS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de la recolección, tendrás:
+
+Homicidios_cln_v2/
+├── utils/
+│   └── scrapping/
+│       ├── config_tweets.py                    ← Tu configuración personalizada
+│       ├── recolectar_tweets_culiacan.ps1      ← Script de recolección generado
+│       ├── ejemplo_uso_completo.py             ← Para procesar después
+│       └── ...
+│
+└── data_tweets_culiacan/                        ← Se crea automáticamente
+    ├── raw/                                     ← Tweets crudos (395 archivos)
+    │   ├── tweets_2024-09-01.jsonl
+    │   ├── tweets_2024-09-02.jsonl
+    │   └── ... (393 archivos más)
+    │
+    ├── resultados/                              ← Datos procesados (después)
+    │   ├── tweets_clasificados_XXXXXX.csv
+    │   ├── resumen_diario_XXXXXX.csv
+    │   └── analisis_anual_XXXXXX.json
+    │
+    └── visualizaciones/                         ← Gráficos (después)
+        ├── serie_temporal_emociones.png
+        ├── calendario_emociones.png
+        └── ... (5 gráficos más)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  IMPORTANTE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. La recolección tomará 6-7 horas. Es NORMAL.
+
+2. Puedes pausar (Ctrl+C) y reanudar ejecutando el script de nuevo.
+   Los archivos ya descargados no se volverán a descargar.
+
+3. Twitter/X puede limitar el scraping si haces demasiados requests muy rápido.
+   El script ya incluye pausas razonables.
+
+4. Si algunos días no tienen tweets, es normal. No todos los días hay menciones
+   de Culiacán en Twitter.
+
+5. NO ejecutes múltiples veces el mismo día sin verificar. Esto puede causar
+   duplicados o sobrescribir datos.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 TROUBLESHOOTING:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ Error: "snscrape: command not found"
+   → Instalar: pip install snscrape
+   
+   Si persiste:
+   → pip install git+https://github.com/JustAnotherArchivist/snscrape.git
+
+❌ Error: "No se puede ejecutar scripts en este sistema"
+   → Ejecuta en PowerShell como Administrador:
+     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+❌ Error: Archivos vacíos o muy pocos tweets
+   → Verifica las palabras clave
+   → Prueba con un día reciente primero (ej: 2025-09-30)
+   → Twitter/X puede tener limitaciones en el scraping
+
+❌ Error: "Access denied" o rate limit
+   → Espera 15-30 minutos
+   → Añade pausas más largas entre requests
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 TIPS PRO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Ejecuta la recolección durante la noche (deja la PC encendida)
+
+✓ Usa un día reciente para probar primero:
+  snscrape --jsonl twitter-search "Culiacan OR Culiacán lang:es since:2025-09-30 until:2025-10-01 -filter:retweets" > test.jsonl
+
+✓ Monitorea el tamaño de archivos:
+  Get-ChildItem data_tweets_culiacan\raw\*.jsonl | Measure-Object -Property Length -Sum
+
+✓ Cuenta tweets totales después:
+  Get-Content data_tweets_culiacan\raw\*.jsonl | Measure-Object -Line
+
+✓ Haz backup de data_tweets_culiacan/raw/ cuando termines
+  (son datos valiosos y la recolección toma mucho tiempo)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 PRÓXIMOS PASOS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de completar la recolección:
+
+1. Instalar dependencias de procesamiento:
+   pip install -r utils\scrapping\requirements_tweets.txt
+
+2. Procesar y clasificar:
+   python utils\scrapping\ejemplo_uso_completo.py
+   → Opción 3: Procesar tweets
+
+3. Generar visualizaciones:
+   → Opción 4: Generar visualizaciones
+
+4. Integrar con tu modelo de homicidios:
+   → Ver utils\scrapping\README_TWEETS.md (sección "Integración")
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¡LISTO PARA EMPEZAR! 🚀
+
+Ejecuta: .\utils\scrapping\recolectar_tweets_culiacan.ps1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

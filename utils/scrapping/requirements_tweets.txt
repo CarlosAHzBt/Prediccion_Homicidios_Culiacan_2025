@@ -1,0 +1,28 @@
+# Dependencias para el sistema de análisis de emociones en tweets
+
+# Recolección de datos
+snscrape>=0.7.0
+
+# Análisis de sentimientos/emociones
+pysentimiento>=0.7.0
+transformers>=4.30.0
+torch>=2.0.0
+
+# Procesamiento de datos
+pandas>=1.5.0
+numpy>=1.24.0
+
+# Detección de idioma
+langdetect>=1.0.9
+
+# Visualización
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Utilidades
+tqdm>=4.65.0
+emoji>=2.0.0
+
+# Opcional para análisis avanzado
+scipy>=1.10.0
+scikit-learn>=1.3.0

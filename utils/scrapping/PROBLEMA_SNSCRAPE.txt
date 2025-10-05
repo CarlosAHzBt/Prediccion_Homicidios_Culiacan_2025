@@ -1,0 +1,86 @@
+"""
+NOTA IMPORTANTE SOBRE LA RECOLECCIÓN DE TWEETS
+===============================================
+
+❌ PROBLEMA DETECTADO:
+Twitter/X ha bloqueado snscrape desde 2023. El scraping ya no funciona debido a:
+- Cambios en la API de Twitter/X
+- Requerimientos de autenticación
+- Bloqueo activo de herramientas de scraping
+
+🔧 SOLUCIONES ALTERNATIVAS:
+
+OPCIÓN 1: API Oficial de Twitter/X (RECOMENDADA)
+------------------------------------------------
+Requiere cuenta de desarrollador (gratis para uso académico/investigación):
+
+1. Crear cuenta: https://developer.twitter.com/
+2. Crear app y obtener credenciales (API Key, API Secret, Bearer Token)
+3. Usar tweepy o python-twitter para recolectar
+
+Ventajas:
+✓ Legal y oficial
+✓ Más confiable
+✓ Cumple términos de servicio
+✓ Acceso a datos históricos (con Academic Research Access)
+
+Código ejemplo con tweepy:
+```python
+import tweepy
+
+# Credenciales
+bearer_token = "TU_BEARER_TOKEN"
+client = tweepy.Client(bearer_token=bearer_token)
+
+# Buscar tweets
+query = "Culiacan OR Culiacán lang:es -is:retweet"
+tweets = client.search_recent_tweets(
+    query=query,
+    max_results=100,
+    start_time="2024-09-01T00:00:00Z",
+    end_time="2024-09-02T00:00:00Z"
+)
+```
+
+OPCIÓN 2: Usar Datos de Demostración
+------------------------------------
+He creado un sistema que genera datos sintéticos realistas para:
+- Probar el sistema completo
+- Desarrollar el análisis sin depender de Twitter
+- Demostrar las visualizaciones
+
+OPCIÓN 3: Fuentes de Datos Alternativas
+---------------------------------------
+- Facebook Graph API (grupos/páginas públicas de Culiacán)
+- Reddit API (subreddits sobre México/Sinaloa)
+- Noticias web (scraping de medios locales como Noroeste, Ríodoce)
+- YouTube comments (videos sobre Culiacán)
+
+🚀 RECOMENDACIÓN PARA TU PROYECTO:
+
+Dado que quieres correlacionar con homicidios, te sugiero:
+
+1. CORTO PLAZO: Usar datos sintéticos para desarrollar el pipeline
+   → python utils/scrapping/test_sistema.py → Opción 3
+
+2. MEDIANO PLAZO: Aplicar para Academic Research Access de Twitter
+   → Acceso GRATUITO a tweets históricos
+   → Perfecto para investigación académica
+   → Hasta 10M tweets/mes
+   → Link: https://developer.twitter.com/en/products/twitter-api/academic-research
+
+3. ALTERNATIVA: Scraping de noticias locales
+   → Más confiable para eventos de seguridad
+   → Medios como Ríodoce, Noroeste reportan homicidios
+   → Puedes hacer análisis de sentimiento en titulares/artículos
+
+¿QUIERES QUE TE AYUDE CON ALGUNA DE ESTAS OPCIONES?
+
+1. Configurar tweepy con la API oficial
+2. Generar datos sintéticos realistas para desarrollo
+3. Crear scraper de noticias locales
+4. Todas las anteriores
+
+Para continuar con datos sintéticos de PRUEBA ahora mismo:
+→ python utils/scrapping/test_sistema.py
+→ Selecciona opción 4: "Test del pipeline completo"
