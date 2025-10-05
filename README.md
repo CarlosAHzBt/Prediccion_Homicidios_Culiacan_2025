@@ -98,5 +98,51 @@ Proyecto personal para análisis de datos. Si encuentras bugs o tienes sugerenci
 
 ---
 
+## 🗃️ Branches Archivadas
+
+### `twitter-emotion-analysis-approach` - Sistema de Análisis de Emociones (ARCHIVADA)
+
+**Estado**: ⚠️ **NO VIABLE** - Costos prohibitivos de Twitter API ($5,000+/mes)
+
+Branch que contiene un **sistema completo y funcional** de análisis de emociones en texto español usando BERT:
+
+**Lo que se logró:**
+- ✅ Sistema completo con 13 archivos Python
+- ✅ Clasificador BERT (pysentimiento) con 68.7% de precisión
+- ✅ 7 visualizaciones profesionales (dashboards, series temporales, calendarios)
+- ✅ Demo exitosa con 1,500 tweets sintéticos
+- ✅ Documentación completa (40+ páginas)
+
+**Por qué se archivó:**
+- ❌ Twitter API: Requiere $5,000+/mes para datos históricos
+- ❌ Scrapers gratuitos (snscrape): Bloqueados por Twitter/X desde 2023
+- ❌ API académica: Ya no disponible para investigadores independientes
+
+**Valor de preservación:**
+- El sistema es técnicamente excelente y **reutilizable para scraping de noticias**
+- Puede analizar emociones en **cualquier texto en español**
+- Ideal para análisis de sentimientos en artículos de Ríodoce, Noroeste, El Debate
+- Referencia educativa para implementación de BERT en español
+
+**Archivos clave en la branch:**
+- `utils/scrapping/tweets_sentiments_test.py` - Clasificador de emociones
+- `utils/scrapping/visualizador_emociones.py` - Sistema de visualización
+- `data_tweets_culiacan/visualizaciones/` - 7 gráficos generados
+- `TWITTER_APPROACH_README.md` - Guía completa del sistema archivado
+
+Para ver el código completo:
+```bash
+git checkout twitter-emotion-analysis-approach
+```
+
+**Alternativas recomendadas** para análisis de sentimientos:
+1. Scraping de noticias locales (Ríodoce, Noroeste) - **MEJOR OPCIÓN**
+2. Reddit/foros públicos
+3. Datasets académicos existentes
+
+El sistema puede adaptarse fácilmente a cualquiera de estas fuentes.
+
+---
+
 **Última actualización**: Septiembre 2025
 **Versión**: En desarrollo
